@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h3><b>{{ message }}</b></h3>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</head>
+<body>
+    <div>
+        {% if current_user.is_authenticated %}
+            <h2><a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('search') }}">Search</a>
+            <a href="{{ url_for('upload') }}">Upload</a>
+            <a href="{{ url_for('logout') }}">Logout</a></h2>
+        {% else %}
+            <h2><a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('search') }}">Search</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a></h2>
+        {% endif %}
+
+    </div>
+    <h1><b>{{title}}</b></h1>
+    {% block content %}{% endblock %}
+</body>
+</html>

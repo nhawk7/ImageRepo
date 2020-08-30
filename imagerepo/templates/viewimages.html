@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if images %}
+    <table width="100%" height="100%" border="2">
+
+        {% for item in images %}
+        <tr>
+        <td>
+        <img src="/static/{{item}}">
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+{% endblock content %}

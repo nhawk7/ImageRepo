@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h1><b>Logged in as: {{current_user.username}}</b></h1>
+    {% endif %}
+    <form method="post" action="">
+        {{form.hidden_tag()}}
+        <div>
+            {{form.username.label}}
+            {{form.username}}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <span>{{error}}</span>
+                {%endfor%}
+            {% endif %}
+        </div>
+        <div>
+            {{form.submit}}
+        </div>
+    </form>
+
+    {% if images %}
+    <table width="100%" height="100%" border="2">
+
+        {% for item in images %}
+        <tr>
+        <td>
+        <img src="/static/{{item}}">
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+{% endblock content %}
